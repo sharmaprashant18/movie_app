@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:movieapp/api.dart';
 import 'package:movieapp/view/homepage.dart';
 
 void main() {
