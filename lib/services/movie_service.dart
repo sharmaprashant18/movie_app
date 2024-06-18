@@ -1,23 +1,17 @@
 import 'package:dio/dio.dart';
-import 'package:movieapp/api.dart';
 
 class MovieService {
   static Dio dio = Dio();
-
-  static Future movieByCategory(
+  static Future getMovieByCategory(
       {required String apiPath, required int page}) async {
     try {
-      await dio.get(apiPath, queryParameters: {
+      final response = await dio.get(apiPath, queryParameters: {
         'api_key': 'f370a118f8c9551e6f47b9193d032054',
         'page': page
       });
-    } on DioException catch (error) {
-//
-//
-//
-//
-//
-//
+      //value must be sent in map i.e key name and value in the queryparameters
+    } on DioException catch (err) {
+      print(err.message);
     }
   }
 }
