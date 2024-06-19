@@ -4,14 +4,28 @@ class MovieState {
   final bool isLoading;
   final List<Movie> movies;
   final String error;
+  final String apiPath;
+  final int page;
 
   MovieState(
-      {required this.error, required this.movies, required this.isLoading});
+      {required this.error,
+      required this.movies,
+      required this.isLoading,
+      required this.apiPath,
+      required this.page});
 
-  MovieState instances(MovieState movieState, bool? isLoading, String? error) {
+  MovieState instances(
+      {required MovieState movieState,
+      bool? isLoading,
+      String? error,
+      List<Movie>? movies,
+      String? apiPath,
+      int? page}) {
     return MovieState(
         error: error ?? movieState.error,
-        movies: movieState.movies,
-        isLoading: isLoading ?? movieState.isLoading);
+        movies: movies ?? movieState.movies,
+        isLoading: isLoading ?? movieState.isLoading,
+        apiPath: movieState.apiPath,
+        page: page ?? movieState.page);
   }
 }
