@@ -7,16 +7,11 @@ class MovieState {
 
   MovieState(
       {required this.error, required this.movies, required this.isLoading});
-  // factory MovieState.fromJson(Map<String, dynamic> json) {
-  //   return MovieState(
-  //       error: json['error'],
-  //       movies: json['movies'],
-  //       isLoading: json['isLoading']);
-  // }
+
   MovieState instances(MovieState movieState, bool? isLoading, String? error) {
     return MovieState(
         error: error ?? movieState.error,
-        movies: movies,
+        movies: movieState.movies,
         isLoading: isLoading ?? movieState.isLoading);
   }
 }
