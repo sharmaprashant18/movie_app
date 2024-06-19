@@ -5,7 +5,9 @@ import 'package:get/get.dart';
 import 'package:movieapp/view/homepage.dart';
 
 void main() async {
-  // MovieService.getMovieByCategory(apiPath: Api.topRatedMovie, page: 1);
+  // final response =
+  //     await MovieService.getMovieByCategory(apiPath: Api.popularMovie, page: 1);
+  // response.fold((l) => print(l), (r) => print(r));
   runApp(ProviderScope(child: Home()));
   // SystemChrome.setSystemUIOverlayStyle(
   //     SystemUiOverlayStyle());
