@@ -12,12 +12,15 @@ final topRatedProvider = StateNotifierProvider((ref) => TopratedProvider(
         page: 1)));
 
 class TopratedProvider extends StateNotifier {
-  TopratedProvider(super.state) {}
+  TopratedProvider(super.state) {
+    getData();
+  }
 
   Future<void> getData() async {
     state = state.instances(movieState: state, isLoading: true);
     final response = await MovieService.getMovieByCategory(
         apiPath: state.apiPath, page: state.page);
+
     response.fold((l) {
       state = state.instances(movieState: state, error: l, isLoading: false);
     }, (r) {
