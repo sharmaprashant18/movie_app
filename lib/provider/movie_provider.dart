@@ -3,8 +3,8 @@ import 'package:movieapp/api.dart';
 import 'package:movieapp/provider/movie_state.dart';
 import 'package:movieapp/services/movie_service.dart';
 
-final popularProvider = StateNotifierProvider((ref) => PopularProvider(
-    MovieState(
+final popularProvider = StateNotifierProvider<PopularProvider, MovieState>(
+    (ref) => PopularProvider(MovieState(
         error: '',
         movies: [],
         isLoading: false,
