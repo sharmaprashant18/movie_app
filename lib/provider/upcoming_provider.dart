@@ -3,15 +3,15 @@ import 'package:movieapp/api.dart';
 import 'package:movieapp/provider/movie_state.dart';
 import 'package:movieapp/services/movie_service.dart';
 
-final upComingProvider = StateNotifierProvider((ref) => UpcomingProvider(
-    MovieState(
+final upComingProvider = StateNotifierProvider<UpcomingProvider, MovieState>(
+    (ref) => UpcomingProvider(MovieState(
         error: '',
         movies: [],
         isLoading: false,
         apiPath: Api.upcomingMovie,
         page: 1)));
 
-class UpcomingProvider extends StateNotifier {
+class UpcomingProvider extends StateNotifier<MovieState> {
   UpcomingProvider(super.state) {
     getData();
   }
@@ -24,7 +24,7 @@ class UpcomingProvider extends StateNotifier {
       state = state.instances(movieState: state, error: l, isLoading: false);
     }, (r) {
       state = state.instances(
-          movieState: state, errror: '', isLoading: false, movies: r);
+          movieState: state, error: '', isLoading: false, movies: r);
     });
   }
 }

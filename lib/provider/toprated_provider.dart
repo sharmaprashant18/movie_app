@@ -3,15 +3,15 @@ import 'package:movieapp/api.dart';
 import 'package:movieapp/provider/movie_state.dart';
 import 'package:movieapp/services/movie_service.dart';
 
-final topRatedProvider = StateNotifierProvider((ref) => TopratedProvider(
-    MovieState(
+final topRatedProvider = StateNotifierProvider<TopratedProvider, MovieState>(
+    (ref) => TopratedProvider(MovieState(
         error: '',
         movies: [],
         isLoading: false,
         apiPath: Api.topRatedMovie,
         page: 1)));
 
-class TopratedProvider extends StateNotifier {
+class TopratedProvider extends StateNotifier<MovieState> {
   TopratedProvider(super.state) {
     getData();
   }

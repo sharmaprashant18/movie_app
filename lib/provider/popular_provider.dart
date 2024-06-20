@@ -8,7 +8,7 @@ final popularProvider = StateNotifierProvider<PopularProvider, MovieState>(
         error: '',
         movies: [],
         isLoading: false,
-        apiPath: Api.upcomingMovie,
+        apiPath: Api.popularMovie,
         page: 1)));
 
 class PopularProvider extends StateNotifier<MovieState> {
