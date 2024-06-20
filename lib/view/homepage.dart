@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:movieapp/provider/movie_provider.dart';
+import 'package:movieapp/provider/popular_provider.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -19,9 +19,7 @@ class HomePage extends StatelessWidget {
               return Center(
                   child: Column(
                 children: [
-                  Image.network(
-                      'https://image.tmdb.org/t/p/w600_and_h900_bestv2' +
-                          movieS.movies[9].poster_path),
+                  Image.network(movieS.movies[9].poster_path),
                   Text(movieS.movies[2].title)
                 ],
               ));
