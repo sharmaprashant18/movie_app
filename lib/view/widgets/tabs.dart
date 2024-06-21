@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:movieapp/provider/movie_state.dart';
 
 class TabsWidget extends StatelessWidget {
-  final ProviderListenable<dynamic>
+  final ProviderListenable<MovieState>
       provider; //by making this we can call the TabsWIdget in the TabBar and can be excessed the required provider by giving the name itself
   TabsWidget({required this.provider});
   @override
@@ -25,7 +26,9 @@ class TabsWidget extends StatelessWidget {
                 crossAxisSpacing: 5),
             itemBuilder: (context, index) {
               final movie = movieS.movies[index];
-              return Image.network(movie.poster_path);
+              return ClipRRect(
+                  borderRadius: BorderRadius.circular(0),
+                  child: Image.network(movie.backdrop_path));
             },
           );
         }

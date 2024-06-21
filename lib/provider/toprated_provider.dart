@@ -22,7 +22,8 @@ class TopratedProvider extends StateNotifier<MovieState> {
         apiPath: state.apiPath, page: state.page);
 
     response.fold((l) {
-      state = state.instances(movieState: state, error: l, isLoading: false);
+      state = state.instances(
+          movieState: state, error: 'Oops! Error Occured', isLoading: false);
     }, (r) {
       state = state.instances(
           movieState: state, movies: r, isLoading: false, error: '');

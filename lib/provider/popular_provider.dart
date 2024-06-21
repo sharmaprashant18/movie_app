@@ -22,7 +22,8 @@ class PopularProvider extends StateNotifier<MovieState> {
         apiPath: state.apiPath, page: state.page);
     response.fold((l) {
       // left for the error and right for the success
-      state = state.instances(movieState: state, error: l, isLoading: false);
+      state = state.instances(
+          movieState: state, error: 'Oops! Error Occured', isLoading: false);
     }, (r) {
       state = state.instances(
           movieState: state, error: '', movies: r, isLoading: false);

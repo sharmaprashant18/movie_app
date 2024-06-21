@@ -21,7 +21,8 @@ class UpcomingProvider extends StateNotifier<MovieState> {
     final response = await MovieService.getMovieByCategory(
         apiPath: state.apiPath, page: state.page);
     response.fold((l) {
-      state = state.instances(movieState: state, error: l, isLoading: false);
+      state = state.instances(
+          movieState: state, error: 'Oops! Error Occured', isLoading: false);
     }, (r) {
       state = state.instances(
           movieState: state, error: '', isLoading: false, movies: r);
