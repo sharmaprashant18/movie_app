@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:movieapp/provider/popular_provider.dart';
 import 'package:movieapp/provider/toprated_provider.dart';
 import 'package:movieapp/provider/upcoming_provider.dart';
+import 'package:movieapp/view/widgets/tabs.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -48,69 +49,9 @@ class HomePage extends StatelessWidget {
             ),
             body: TabBarView(
               children: [
-                Center(
-                  child: Consumer(
-                    builder: (context, ref, child) {
-                      final movieS = ref.watch(popularProvider);
-
-                      if (movieS.isLoading) {
-                        return Center(child: CircularProgressIndicator());
-                      } else if (movieS.error.isNotEmpty) {
-                        return Center(child: Text(movieS.error));
-                      } else {
-                        return Center(
-                            child: Column(
-                          children: [
-                            Image.network(movieS.movies[9].poster_path),
-                            Text(movieS.movies[2].title)
-                          ],
-                        ));
-                      }
-                    },
-                  ),
-                ),
-                Center(
-                  child: Consumer(
-                    builder: (context, ref, child) {
-                      final movieS = ref.watch(upComingProvider);
-
-                      if (movieS.isLoading) {
-                        return Center(child: CircularProgressIndicator());
-                      } else if (movieS.error.isNotEmpty) {
-                        return Center(child: Text(movieS.error));
-                      } else {
-                        return Center(
-                            child: Column(
-                          children: [
-                            Image.network(movieS.movies[9].poster_path),
-                            Text(movieS.movies[2].title)
-                          ],
-                        ));
-                      }
-                    },
-                  ),
-                ),
-                Center(
-                  child: Consumer(
-                    builder: (context, ref, child) {
-                      final movieS = ref.watch(topRatedProvider);
-
-                      if (movieS.isLoading) {
-                        return Center(child: CircularProgressIndicator());
-                      } else if (movieS.error.isNotEmpty) {
-                        return Center(child: Text(movieS.error));
-                      } else {
-                        return Center(
-                            child: Column(
-                          children: [
-                            Image.network(movieS.movies[9].poster_path),
-                            Text(movieS.movies[2].title)
-                          ],
-                        ));
-                      }
-                    },
-                  ),
-                ),
+                TabsWidget(provider: popularProvider),
+                TabsWidget(provider: topRatedProvider),
+                TabsWidget(provider: upComingProvider),
               ],
             )),
       ),
