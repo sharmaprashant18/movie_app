@@ -45,7 +45,7 @@ class TabsWidget extends StatelessWidget {
                         return Center(
                             child: SpinKitDualRing(
                           color: Colors.redAccent,
-                          duration: Duration(milliseconds: 6),
+                          duration: Duration(milliseconds: 1),
                         ));
                       },
                       imageUrl: movie.poster_path));

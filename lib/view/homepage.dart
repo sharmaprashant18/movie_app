@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:movieapp/provider/movie_provider.dart';
 
@@ -7,6 +8,7 @@ import 'package:movieapp/view/widgets/tabs.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    FlutterNativeSplash.remove();
     return DefaultTabController(
       length: 5,
       child: SafeArea(
@@ -56,7 +58,8 @@ class HomePage extends StatelessWidget {
             body: TabBarView(
               children: [
                 TabsWidget(popularProvider,
-                    'popular'), //'popular' is the pageKey which is in string soo something must be given
+                    'popular'), //'popular' is the pageKey which is in string soo something must be given same as in the other provider also
+
                 TabsWidget(topRatedProvider, 'top'),
                 TabsWidget(upComingProvider, 'upcoming'),
                 TabsWidget(nowPlaying, 'nowplaying'),

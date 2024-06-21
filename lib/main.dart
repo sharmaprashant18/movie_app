@@ -11,6 +11,7 @@ void main() async {
   runApp(ProviderScope(child: Home()));
   // SystemChrome.setSystemUIOverlayStyle(
   //     SystemUiOverlayStyle());
+  await Future.delayed(Duration(milliseconds: 10));
 }
 
 class Home extends StatelessWidget {

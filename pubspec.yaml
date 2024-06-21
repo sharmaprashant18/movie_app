@@ -44,6 +44,14 @@ dependencies:
   dartz: ^0.10.1
   flutter_spinkit: ^5.2.1
   fluttertoast: ^8.2.6
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/moviesplash.png
+  color_dark: "#121212"
+  android_12: 
+  web: false
+
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
