@@ -8,7 +8,7 @@ class TabsWidget extends StatelessWidget {
   final ProviderListenable<MovieState>
       provider; //by making this we can call the TabsWIdget in the TabBar and can be excessed the required provider by giving the name itself
   final String pageKey;
-  TabsWidget({required this.provider, required this.pageKey});
+  TabsWidget(this.provider, this.pageKey);
   @override
   Widget build(BuildContext context) {
     return Consumer(

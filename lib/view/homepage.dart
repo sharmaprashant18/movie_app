@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
-import 'package:movieapp/provider/latest_provider.dart';
-import 'package:movieapp/provider/nowplaying_provider.dart';
-import 'package:movieapp/provider/popular_provider.dart';
-import 'package:movieapp/provider/toprated_provider.dart';
-import 'package:movieapp/provider/upcoming_provider.dart';
+import 'package:movieapp/provider/movie_provider.dart';
+
 import 'package:movieapp/view/widgets/tabs.dart';
 
 class HomePage extends StatelessWidget {
@@ -58,37 +55,15 @@ class HomePage extends StatelessWidget {
             ),
             body: TabBarView(
               children: [
-                TabsWidget(
-                  provider: popularProvider,
-                  pageKey: '',
-                ),
-                TabsWidget(provider: topRatedProvider, pageKey: ''),
-                TabsWidget(provider: upComingProvider, pageKey: ''),
-                TabsWidget(provider: nowPlaying, pageKey: ''),
-                TabsWidget(provider: latest, pageKey: '')
+                TabsWidget(popularProvider,
+                    'popular'), //'popular' is the pageKey which is in string soo something must be given
+                TabsWidget(topRatedProvider, 'top'),
+                TabsWidget(upComingProvider, 'upcoming'),
+                TabsWidget(nowPlaying, 'nowplaying'),
+                TabsWidget(latest, 'latest')
               ],
             )),
       ),
     );
   }
 }
-
-// Consumer(
-//             builder: (context, ref, child) {
-//               final movieS = ref.watch(popularProvider);
-
-//               if (movieS.isLoading) {
-//                 return Center(child: CircularProgressIndicator());
-//               } else if (movieS.error.isNotEmpty) {
-//                 return Center(child: Text(movieS.error));
-//               } else {
-//                 return Center(
-//                     child: Column(
-//                   children: [
-//                     Image.network(movieS.movies[9].poster_path),
-//                     Text(movieS.movies[2].title)
-//                   ],
-//                 ));
-//               }
-//             },
-//           ),
