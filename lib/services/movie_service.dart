@@ -20,4 +20,19 @@ class MovieService {
       return Left(err.message as String);
     }
   }
+
+  static Future<Either<String, Movie>> getLatestMovie(
+      {required String apiPath}) async {
+    try {
+      //value must be sent in map i.e key name and value in the queryparameters
+      final response = await dio.get(apiPath, queryParameters: {
+        'api_key': 'f370a118f8c9551e6f47b9193d032054',
+      });
+      final newData = Movie.fromJson(response.data);
+
+      return Right(newData);
+    } on DioException catch (err) {
+      return Left(err.message as String);
+    }
+  }
 }

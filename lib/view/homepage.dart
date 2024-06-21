@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:movieapp/provider/latest_provider.dart';
+import 'package:movieapp/provider/nowplaying_provider.dart';
 import 'package:movieapp/provider/popular_provider.dart';
 import 'package:movieapp/provider/toprated_provider.dart';
 import 'package:movieapp/provider/upcoming_provider.dart';
@@ -9,7 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 5,
       child: SafeArea(
         child: Scaffold(
             appBar: AppBar(
@@ -34,6 +36,7 @@ class HomePage extends StatelessWidget {
                   color: Colors.red,
                   borderRadius: BorderRadius.circular(40),
                 ),
+                isScrollable: T,
                 tabs: [
                   Tab(
                     text: 'Popular',
@@ -44,14 +47,25 @@ class HomePage extends StatelessWidget {
                   Tab(
                     text: 'Up Coming',
                   ),
+                  Tab(
+                    text: 'Now Playing',
+                  ),
+                  Tab(
+                    text: 'Latest',
+                  )
                 ],
               ),
             ),
             body: TabBarView(
               children: [
-                TabsWidget(provider: popularProvider),
-                TabsWidget(provider: topRatedProvider),
-                TabsWidget(provider: upComingProvider),
+                TabsWidget(
+                  provider: popularProvider,
+                  pageKey: '',
+                ),
+                TabsWidget(provider: topRatedProvider, pageKey: ''),
+                TabsWidget(provider: upComingProvider, pageKey: ''),
+                TabsWidget(provider: nowPlaying, pageKey: ''),
+                TabsWidget(provider: latest, pageKey: '')
               ],
             )),
       ),
