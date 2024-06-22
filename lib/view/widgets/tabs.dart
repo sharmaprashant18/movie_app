@@ -1,8 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+
 import 'package:movieapp/provider/movie_state.dart';
+import 'package:shimmer/shimmer.dart';
 
 class TabsWidget extends StatelessWidget {
   final ProviderListenable<MovieState>
@@ -17,10 +18,10 @@ class TabsWidget extends StatelessWidget {
 
         if (movieS.isLoading) {
           return Center(
-              child: SpinKitFadingCube(
-            color: Colors.red,
-            duration: Duration(milliseconds: 6),
-          ));
+              child: Shimmer.fromColors(
+                  child: Text(''),
+                  baseColor: Colors.red,
+                  highlightColor: Colors.red));
         } else if (movieS.error.isNotEmpty) {
           return Center(child: Text(movieS.error));
         } else {
@@ -43,10 +44,11 @@ class TabsWidget extends StatelessWidget {
                       },
                       placeholder: (context, url) {
                         return Center(
-                            child: SpinKitDualRing(
-                          color: Colors.redAccent,
-                          duration: Duration(milliseconds: 1),
-                        ));
+                            child: Shimmer.fromColors(
+                                child: Text(''),
+                                baseColor: Colors.red,
+                                highlightColor: Colors
+                                    .red)); //Shimmer is used for the loading like the youtube
                       },
                       imageUrl: movie.poster_path));
             },

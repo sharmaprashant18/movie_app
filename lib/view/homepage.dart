@@ -8,7 +8,7 @@ import 'package:movieapp/view/widgets/tabs.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    FlutterNativeSplash.remove();
+    FlutterNativeSplash.remove(); // for flutter native splash
     return DefaultTabController(
       length: 5,
       child: SafeArea(
