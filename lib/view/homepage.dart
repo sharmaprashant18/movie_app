@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:movieapp/provider/movie_provider.dart';
+import 'package:movieapp/view/search_page.dart';
 
 import 'package:movieapp/view/widgets/tabs.dart';
 
@@ -23,7 +25,13 @@ class HomePage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      Get.to(() => SearchPage());
+                    },
+                    icon: Icon(Icons.search))
+              ],
               bottom: TabBar(
                 labelStyle: TextStyle(
                     color: Colors
