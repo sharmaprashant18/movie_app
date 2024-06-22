@@ -35,4 +35,20 @@ class MovieService {
       return Left(err.message as String);
     }
   }
+
+  static Future<Either<String, List<Movie>>> getSearchMovie(
+      {required String apiPath, required String queryText}) async {
+    try {
+      final response = await dio.get(apiPath, queryParameters: {
+        'api_key': 'f370a118f8c9551e6f47b9193d032054',
+        'query': queryText
+      });
+      final newData = (response.data['results'] as List)
+          .map((e) => Movie.fromJson(e))
+          .toList();
+      return Right(newData);
+    } on DioException catch (err) {
+      return Left(err.message as String);
+    }
+  }
 }

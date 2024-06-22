@@ -28,7 +28,8 @@ class HomePage extends StatelessWidget {
               actions: [
                 IconButton(
                     onPressed: () {
-                      Get.to(() => SearchPage());
+                      Get.to(() => SearchPage(),
+                          transition: Transition.rightToLeft);
                     },
                     icon: Icon(Icons.search))
               ],

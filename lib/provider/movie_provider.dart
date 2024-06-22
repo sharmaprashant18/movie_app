@@ -4,6 +4,8 @@ import 'package:movieapp/api.dart';
 import 'package:movieapp/provider/movie_state.dart';
 import 'package:movieapp/services/movie_service.dart';
 
+//POPULAR PROVIDER
+
 final popularProvider = StateNotifierProvider<PopularProvider, MovieState>(
     (ref) => PopularProvider(MovieState(
         error: '',
@@ -31,6 +33,8 @@ class PopularProvider extends StateNotifier<MovieState> {
     });
   }
 }
+
+//TOPRATED PROVIDER
 
 final topRatedProvider = StateNotifierProvider<TopratedProvider, MovieState>(
     (ref) => TopratedProvider(MovieState(
@@ -60,6 +64,8 @@ class TopratedProvider extends StateNotifier<MovieState> {
   }
 }
 
+//UPCOMING PROVIDER
+
 final upComingProvider = StateNotifierProvider<UpcomingProvider, MovieState>(
     (ref) => UpcomingProvider(MovieState(
         error: '',
@@ -87,6 +93,8 @@ class UpcomingProvider extends StateNotifier<MovieState> {
   }
 }
 
+//NOWPLAYING PROVIDER
+
 final nowPlaying = StateNotifierProvider<NowplayingProvider, MovieState>(
     (ref) => NowplayingProvider(MovieState(
         error: '',
@@ -113,6 +121,8 @@ class NowplayingProvider extends StateNotifier<MovieState> {
   }
 }
 
+//LATEST PROVIDER
+
 final latest = StateNotifierProvider<LatestProvider, MovieState>((ref) =>
     LatestProvider(MovieState(
         error: '',
@@ -128,9 +138,7 @@ class LatestProvider extends StateNotifier<MovieState> {
   Future<void> getData() async {
     state = state.instances(movieState: state, isLoading: true);
 
-    final response = await MovieService.getLatestMovie(
-      apiPath: state.apiPath,
-    );
+    final response = await MovieService.getLatestMovie(apiPath: state.apiPath);
     response.fold((l) {
       state = state.instances(movieState: state, error: l, isLoading: F);
     }, (r) {

@@ -6,5 +6,5 @@ class Api {
   static const String upcomingMovie = '$baseUrl/upcoming';
   static const String nowPlaying = '$baseUrl/now_playing';
   static const String latestMovie = '$baseUrl/latest';
+  static const String searchMovie = 'https://api.themoviedb.org/3/search/movie';
 }
-// https://api.themoviedb.org/3/movie/latest
