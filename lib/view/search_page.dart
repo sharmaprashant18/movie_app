@@ -1,36 +1,3 @@
-// class SearchPage extends StatelessWidget {
-//   // final textController = TextEditingController();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Consumer(
-//       builder: (context, ref, child) {
-//         ref.watch(search.notifier);
-//         return SafeArea(
-//           child: Scaffold(
-//               resizeToAvoidBottomInset: true,
-//               appBar: AppBar(
-//                 title: TextFormField(
-//                   // controller: textController,
-//                   onFieldSubmitted: (value) {
-//                     if (value.isEmpty) {
-//                       Get.defaultDialog(
-//                           title: 'Required',
-//                           middleText: 'Please enter a search query');
-//                     } else {
-//                       Get.to(() => HomePage());
-//                       // textController.clear();
-//                     }
-//                   },
-//                 ),
-//                 // backgroundColor: Colors.white,
-//               )),
-//         );
-//       },
-//     );
-//   }
-// }
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -117,35 +84,3 @@ class SearchPage extends StatelessWidget {
   }
 }
 
-// import 'package:flutter/material.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-// class SearchPage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Consumer(
-//       builder: (context, ref, child) {
-//         final movieS = ref.watch(
-//         a);
-//         return SafeArea(
-//           child: Scaffold(
-//               body: Container(
-//             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-//             child: Column(
-//               children: [
-//                 TextFormField(
-//                   decoration: InputDecoration(
-//                       hintText: 'Search',
-//                       border: OutlineInputBorder(),
-//                       contentPadding:
-//                           EdgeInsets.symmetric(vertical: 10, horizontal: 10)),
-//                   onFieldSubmitted: (value) {},
-//                 )
-//               ],
-//             ),
-//           )),
-//         );
-//       },
-//     );
-//   }
-// }

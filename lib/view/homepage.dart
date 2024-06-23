@@ -10,7 +10,8 @@ import 'package:movieapp/view/widgets/tabs.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    FlutterNativeSplash.remove(); // for flutter native splash
+    FlutterNativeSplash
+        .remove(); // for removing  splash screen after the given time which we have given in the main.dart Future.delayed
     return DefaultTabController(
       length: 5,
       child: SafeArea(
