@@ -12,7 +12,8 @@ final popularProvider = StateNotifierProvider<PopularProvider, MovieState>(
         movies: [],
         isLoading: false,
         apiPath: Api.popularMovie,
-        page: 1)));
+        page: 1,
+        loadMore: false)));
 
 class PopularProvider extends StateNotifier<MovieState> {
   PopularProvider(super.state) {
@@ -20,7 +21,8 @@ class PopularProvider extends StateNotifier<MovieState> {
   }
 
   Future<void> getData() async {
-    state = state.instances(movieState: state, isLoading: true);
+    state = state.instances(
+        movieState: state, isLoading: state.loadMore ? false : true);
     final response = await MovieService.getMovieByCategory(
         apiPath: state.apiPath, page: state.page);
     response.fold((l) {
@@ -29,8 +31,17 @@ class PopularProvider extends StateNotifier<MovieState> {
           movieState: state, error: 'Oops! Error Occured', isLoading: false);
     }, (r) {
       state = state.instances(
-          movieState: state, error: '', movies: r, isLoading: false);
+          movieState: state,
+          error: '',
+          movies: [...state.movies, ...r],
+          isLoading: false);
     });
+  }
+
+  void loadMore() {
+    state = state.instances(
+        movieState: state, page: state.page + 1, loadMore: true);
+    getData();
   }
 }
 
@@ -42,7 +53,8 @@ final topRatedProvider = StateNotifierProvider<TopratedProvider, MovieState>(
         movies: [],
         isLoading: false,
         apiPath: Api.topRatedMovie,
-        page: 1)));
+        page: 1,
+        loadMore: false)));
 
 class TopratedProvider extends StateNotifier<MovieState> {
   TopratedProvider(super.state) {
@@ -50,7 +62,8 @@ class TopratedProvider extends StateNotifier<MovieState> {
   }
 
   Future<void> getData() async {
-    state = state.instances(movieState: state, isLoading: true);
+    state = state.instances(
+        movieState: state, isLoading: state.loadMore ? false : true);
     final response = await MovieService.getMovieByCategory(
         apiPath: state.apiPath, page: state.page);
 
@@ -59,8 +72,17 @@ class TopratedProvider extends StateNotifier<MovieState> {
           movieState: state, error: 'Oops! Error Occured', isLoading: false);
     }, (r) {
       state = state.instances(
-          movieState: state, movies: r, isLoading: false, error: '');
+          movieState: state,
+          movies: [...state.movies, ...r],
+          isLoading: false,
+          error: '');
     });
+  }
+
+  void loadMore() {
+    state = state.instances(
+        movieState: state, page: state.page + 1, loadMore: true);
+    getData();
   }
 }
 
@@ -72,7 +94,8 @@ final upComingProvider = StateNotifierProvider<UpcomingProvider, MovieState>(
         movies: [],
         isLoading: false,
         apiPath: Api.upcomingMovie,
-        page: 1)));
+        page: 1,
+        loadMore: false)));
 
 class UpcomingProvider extends StateNotifier<MovieState> {
   UpcomingProvider(super.state) {
@@ -80,7 +103,8 @@ class UpcomingProvider extends StateNotifier<MovieState> {
   }
 
   Future<void> getData() async {
-    state = state.instances(movieState: state, isLoading: true);
+    state = state.instances(
+        movieState: state, isLoading: state.loadMore ? false : true);
     final response = await MovieService.getMovieByCategory(
         apiPath: state.apiPath, page: state.page);
     response.fold((l) {
@@ -88,8 +112,17 @@ class UpcomingProvider extends StateNotifier<MovieState> {
           movieState: state, error: 'Oops! Error Occured', isLoading: false);
     }, (r) {
       state = state.instances(
-          movieState: state, error: '', isLoading: false, movies: r);
+          movieState: state,
+          error: '',
+          isLoading: false,
+          movies: [...state.movies, ...r]);
     });
+  }
+
+  void loadMore() {
+    state = state.instances(
+        movieState: state, page: state.page + 1, loadMore: true);
+    getData();
   }
 }
 
@@ -101,14 +134,16 @@ final nowPlaying = StateNotifierProvider<NowplayingProvider, MovieState>(
         movies: [],
         isLoading: false,
         apiPath: Api.nowPlaying,
-        page: 1)));
+        page: 1,
+        loadMore: false)));
 
 class NowplayingProvider extends StateNotifier<MovieState> {
   NowplayingProvider(super.state) {
     getData();
   }
   Future<void> getData() async {
-    state = state.instances(movieState: state, isLoading: true);
+    state = state.instances(
+        movieState: state, isLoading: state.loadMore ? false : true);
     final response = await MovieService.getMovieByCategory(
         apiPath: state.apiPath, page: state.page);
     response.fold((l) {
@@ -116,8 +151,17 @@ class NowplayingProvider extends StateNotifier<MovieState> {
           movieState: state, error: 'Oops! Error Occured', isLoading: false);
     }, (r) {
       state = state.instances(
-          movieState: state, movies: r, error: '', isLoading: false);
+          movieState: state,
+          movies: [...state.movies, ...r],
+          error: '',
+          isLoading: false);
     });
+  }
+
+  void loadMore() {
+    state = state.instances(
+        movieState: state, page: state.page + 1, loadMore: true);
+    getData();
   }
 }
 
@@ -129,14 +173,15 @@ final latest = StateNotifierProvider<LatestProvider, MovieState>((ref) =>
         movies: [],
         isLoading: false,
         apiPath: Api.latestMovie,
-        page: 1)));
+        page: 1,
+        loadMore: false)));
 
 class LatestProvider extends StateNotifier<MovieState> {
   LatestProvider(super.state) {
     getData();
   }
   Future<void> getData() async {
-    state = state.instances(movieState: state, isLoading: true);
+    state = state.instances(movieState: state, isLoading: false);
 
     final response = await MovieService.getLatestMovie(apiPath: state.apiPath);
     response.fold((l) {
