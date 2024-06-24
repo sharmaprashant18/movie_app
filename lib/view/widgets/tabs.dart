@@ -65,4 +65,3 @@ class TabsWidget extends StatelessWidget {
     );
   }
 }
-
