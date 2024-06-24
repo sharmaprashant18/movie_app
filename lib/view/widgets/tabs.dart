@@ -48,7 +48,7 @@ class TabsWidget extends StatelessWidget {
                   return InkWell(
                     splashColor: Colors.green,
                     onTap: () {
-                      Get.to(() => DetailPage());
+                      Get.to(() => DetailPage(movie));
                     },
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
