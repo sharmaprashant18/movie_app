@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
+import 'package:movieapp/view/detail_page.dart';
 
 import 'package:shimmer/shimmer.dart';
 
@@ -43,21 +45,27 @@ class TabsWidget extends StatelessWidget {
                     crossAxisSpacing: 5),
                 itemBuilder: (context, index) {
                   final movie = movieS.movies[index];
-                  return ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: CachedNetworkImage(
-                          errorWidget: (context, url, error) {
-                            return Image.asset('assets/moviesplash.png');
-                          },
-                          placeholder: (context, url) {
-                            return Center(
-                                child: Shimmer.fromColors(
-                                    child: Text(''),
-                                    baseColor: Colors.red,
-                                    highlightColor: Colors
-                                        .red)); //Shimmer is used for the loading like the youtube
-                          },
-                          imageUrl: movie.poster_path));
+                  return InkWell(
+                    splashColor: Colors.green,
+                    onTap: () {
+                      Get.to(() => DetailPage());
+                    },
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: CachedNetworkImage(
+                            errorWidget: (context, url, error) {
+                              return Image.asset('assets/moviesplash.png');
+                            },
+                            placeholder: (context, url) {
+                              return Center(
+                                  child: Shimmer.fromColors(
+                                      child: Text(''),
+                                      baseColor: Colors.red,
+                                      highlightColor: Colors
+                                          .red)); //Shimmer is used for the loading like the youtube
+                            },
+                            imageUrl: movie.poster_path)),
+                  );
                 },
               ));
         }
