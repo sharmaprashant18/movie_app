@@ -5,6 +5,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
 import 'package:movieapp/provider/search_provider.dart';
+import 'package:movieapp/view/detail_page.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SearchPage extends StatelessWidget {
@@ -51,24 +52,30 @@ class SearchPage extends StatelessWidget {
                                             crossAxisSpacing: 5),
                                     itemBuilder: (context, index) {
                                       final movie = movieS.movies[index];
-                                      return ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          child: CachedNetworkImage(
-                                              errorWidget:
-                                                  (context, url, error) {
-                                                return Image.asset(
-                                                    'assets/moviesplash.png');
-                                              },
-                                              placeholder: (context, url) {
-                                                return Center(
-                                                    child: Shimmer.fromColors(
-                                                        child: Text(''),
-                                                        baseColor: Colors.red,
-                                                        highlightColor: Colors
-                                                            .red)); //Shimmer is used for the loading like the youtube
-                                              },
-                                              imageUrl: movie.poster_path));
+                                      return InkWell(
+                                        splashColor: Colors.green,
+                                        onTap: () {
+                                          Get.to(() => DetailPage(movie));
+                                        },
+                                        child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: CachedNetworkImage(
+                                                errorWidget:
+                                                    (context, url, error) {
+                                                  return Image.asset(
+                                                      'assets/moviesplash.png');
+                                                },
+                                                placeholder: (context, url) {
+                                                  return Center(
+                                                      child: Shimmer.fromColors(
+                                                          child: Text(''),
+                                                          baseColor: Colors.red,
+                                                          highlightColor: Colors
+                                                              .red)); //Shimmer is used for the loading like the youtube
+                                                },
+                                                imageUrl: movie.poster_path)),
+                                      );
                                     },
                                   )
                                 : Text(
@@ -83,4 +90,3 @@ class SearchPage extends StatelessWidget {
     );
   }
 }
-
