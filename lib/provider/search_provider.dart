@@ -21,13 +21,21 @@ class SearchProvider extends StateNotifier<MovieState> {
     final response = await MovieService.getSearchMovie(
         apiPath: state.apiPath, queryText: searchText);
     response.fold((l) {
-      state = state.instances(movieState: state, isLoading: false);
+      state = state.instances(movieState: state, isLoading: false, error: l);
     }, (r) {
-      state = state.instances(
-          movieState: state,
-          error: '',
-          movies: [...state.movies, ...r],
-          isLoading: false);
+      if (r.isEmpty) {
+        state = state.instances(
+            movieState: state,
+            error: 'Try Using Another Keyword',
+            isLoading: false,
+            movies: []);
+      } else {
+        state = state.instances(
+            movieState: state,
+            error: '',
+            movies: [...state.movies, ...r],
+            isLoading: false);
+      }
     });
   }
 

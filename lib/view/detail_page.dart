@@ -11,20 +11,35 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer(
-        builder: (context, ref, child) {
-          final videoData = ref.watch(videoProvider(movie.id));
-          return ListView(
-            children: [
-              videoData.when(
-                  data: (data) {
-                    return VideoWidget(data[0].key);
-                  },
-                  error: (err, stack) => Center(child: Text('$err')),
-                  loading: () => Container())
-            ],
-          );
-        },
+      body: Container(
+        // height: 400,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+          colorFilter: ColorFilter.mode(Colors.black54, BlendMode.colorBurn),
+          image: NetworkImage(movie.backdrop_path),
+          fit: BoxFit.cover,
+        )), // this is forin the background image
+        child: Consumer(
+          builder: (context, ref, child) {
+            final videoData = ref.watch(videoProvider(movie.id));
+            return ListView(
+              children: [
+                videoData.when(
+                    data: (data) {
+                      return VideoWidget(data[0].key);
+                    },
+                    error: (err, stack) => Center(child: Text('$err')),
+                    loading: () => Container()),
+                Text(
+                  movie.title,
+                  style: TextStyle(
+                      fontSize: 25,
+                      shadows: [Shadow(blurRadius: 2.9, color: Colors.red)]),
+                )
+              ],
+            );
+          },
+        ),
       ),
     );
   }

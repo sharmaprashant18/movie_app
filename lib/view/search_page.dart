@@ -55,7 +55,8 @@ class SearchPage extends StatelessWidget {
                                       return InkWell(
                                         splashColor: Colors.green,
                                         onTap: () {
-                                          Get.to(() => DetailPage(movie));
+                                          Get.to(() => DetailPage(movie),
+                                              transition: Transition.native);
                                         },
                                         child: ClipRRect(
                                             borderRadius:
