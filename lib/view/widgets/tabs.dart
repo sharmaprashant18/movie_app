@@ -1,19 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:movieapp/view/detail_page.dart';
-
 import 'package:shimmer/shimmer.dart';
 
 class TabsWidget extends StatelessWidget {
   final provider; //by making this we can call the TabsWIdget in the TabBar and can be excessed the required provider by giving the name itself
   final String pageKey;
   TabsWidget(this.provider, this.pageKey);
-
-  get ref => null;
   @override
   Widget build(BuildContext context) {
     return Container(
