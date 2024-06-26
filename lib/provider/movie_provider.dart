@@ -185,7 +185,8 @@ class LatestProvider extends StateNotifier<MovieState> {
 
     final response = await MovieService.getLatestMovie(apiPath: state.apiPath);
     response.fold((l) {
-      state = state.instances(movieState: state, error: l, isLoading: F);
+      state = state.instances(
+          movieState: state, error: 'Oops! Error Occured', isLoading: F);
     }, (r) {
       state = state.instances(
           movieState: state, error: '', isLoading: false, movies: [r]);

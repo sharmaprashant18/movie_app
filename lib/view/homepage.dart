@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
+
 import 'package:movieapp/provider/movie_provider.dart';
 import 'package:movieapp/view/search_page.dart';
 
