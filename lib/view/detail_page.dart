@@ -12,13 +12,13 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        // height: 400,
+      
         decoration: BoxDecoration(
             image: DecorationImage(
           colorFilter: ColorFilter.mode(Colors.black54, BlendMode.colorBurn),
           image: NetworkImage(movie.backdrop_path),
           fit: BoxFit.cover,
-        )), // this is forin the background image
+        )), // this is for the background image
         child: Consumer(
           builder: (context, ref, child) {
             final videoData = ref.watch(videoProvider(movie.id));
